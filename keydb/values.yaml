@@ -2,7 +2,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 imageRepository: eqalpha/keydb
-imageTag: x86_64_v6.3.2
+imageTag: x86_64_v6.3.4
 imagePullPolicy: IfNotPresent
 imagePullSecrets: []
 
@@ -180,7 +180,11 @@ securityContext: {}
 
 keydb:
   # Container security context
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
 
 service:
   annotations: {}
@@ -224,7 +228,7 @@ serviceMonitor:
 exporter:
   enabled: false
   imageRepository: oliver006/redis_exporter
-  imageTag: v1.48.0-alpine
+  imageTag: v1.55.0-alpine
   pullPolicy: IfNotPresent
 
   # Prometheus port & scrape path
@@ -253,10 +257,20 @@ exporter:
     periodSeconds: 5
 
   # CPU/Memory resource limits/requests
-  resources: {}
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
 
   # Container security context
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
 
   # Additional args for redis exporter
   extraArgs: []
