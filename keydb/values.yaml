@@ -26,6 +26,7 @@ protectedMode: "no"
 appendonly: "no"
 
 annotations: {}
+commonLabels: {}
 
 configExtraArgs: []
   # - somesimple: "argument"
@@ -190,9 +191,9 @@ keydb:
 
 service:
   annotations: {}
+  labels: {}
   appProtocol:
     enabled: false
-  labels: {}
 
 serviceAccount:
   enabled: false

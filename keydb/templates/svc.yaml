@@ -4,7 +4,12 @@ metadata:
   name: {{ include "keydb.fullname" . }}
   labels:
     {{- include "keydb.labels" . | nindent 4 }}
-    {{- toYaml .Values.service.labels | nindent 4 }}
+    {{- if .Values.service.labels }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.service.labels "context" $) | nindent 4 }}
+    {{- end }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
   annotations:
     {{- toYaml .Values.service.annotations | nindent 4 }}
 spec:
