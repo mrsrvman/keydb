@@ -8,6 +8,8 @@ imagePullSecrets: []
 
 nodes: 3
 
+podManagementPolicy: OrderedReady
+
 password: ""
 existingSecret: ""
 existingSecretPasswordKey: "password"

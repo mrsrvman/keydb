@@ -10,6 +10,7 @@ metadata:
     {{- include "keydb.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.nodes }}
+  podManagementPolicy: {{ .Values.deployment.podManagementPolicy }}
   serviceName: {{ include "keydb.fullname" . }}-headless
   selector:
     matchLabels:
