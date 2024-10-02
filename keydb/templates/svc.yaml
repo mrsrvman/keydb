@@ -4,6 +4,7 @@ metadata:
   name: {{ include "keydb.fullname" . }}
   labels:
     {{- include "keydb.labels" . | nindent 4 }}
+    {{- toYaml .Values.service.labels | nindent 4 }}
   annotations:
     {{- toYaml .Values.service.annotations | nindent 4 }}
 spec:

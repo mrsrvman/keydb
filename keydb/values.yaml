@@ -190,6 +190,7 @@ service:
   annotations: {}
   appProtocol:
     enabled: false
+  labels: {}
 
 serviceAccount:
   enabled: false
